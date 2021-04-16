@@ -8,7 +8,6 @@ import {
   Code,
   Grid,
 } from '@chakra-ui/react';
-import { Logo } from 'components/SharedComponents/Logo';
 import Nav  from 'components/SharedComponents/Nav.js';
 import Home from 'components/Home/Home';
 import { BrowserRouter as Router, Switch, Route, Link as RouterLink } from 'react-router-dom'

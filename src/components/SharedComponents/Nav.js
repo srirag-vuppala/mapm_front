@@ -15,7 +15,7 @@ import { ColorModeSwitcher } from 'components/SharedComponents/ColorModeSwitcher
 import { Logo } from 'components/SharedComponents/Logo' 
 
 const Nav = () => {
-  const gradient = 'repeating-linear(to-l, #0bab64, #3bb78f)';
+  const gradient = 'repeating-linear(to-l, g_start, g_end)';
   return (
     <>
       <Box p={3} bgGradient={gradient} borderRadius="0" boxShadow="dark-lg">
@@ -32,9 +32,9 @@ const Nav = () => {
           </Box>
           <HStack spacing="10px">
             <Box>
-              <Link>
+              <Link to="/">
                 <Text fontSize="xl" fontWeight="bold">
-                  MapM
+                  mapM
                 </Text>
               </Link>
             </Box>
