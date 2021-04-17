@@ -1,12 +1,13 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
-// import Form from 'components/Home/Form'
-import FormikExample from 'components/Home/Form'
+import Form from 'components/Home/Form'
+import Banner from 'components/Home/Banner'
 
 const Home = () => {
   return (
     <>
-      <FormikExample />
+      <Banner />
+      <Form/>
       <Box>ijlkj</Box>
     </>
   );

@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
 import {
+  Tag,
   Box,
   Divider,
   Heading,
   Text,
-  Grid,
-  GridItem,
   Stack,
+  HStack,
   Button,
-  FormLabel,
-  FormControl,
-  InputGroup,
   Input,
   Radio,
   ButtonGroup,
-  InputLeftElement,
-  InputRightElement,
-  FormErrorMessage,
-  useColorMode
+  useColorMode,
 } from '@chakra-ui/react';
 import {
   CheckboxContainer,
@@ -34,9 +28,9 @@ import {
   SwitchControl,
   TextareaControl,
 } from 'formik-chakra-ui';
-import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
-import BorderBox from 'components/SharedComponents/BorderBox';
-import { Formik, Form as FormikForm, Field } from 'formik';
+// import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
+// import BorderBox from 'components/SharedComponents/BorderBox';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 // Yup validations
@@ -159,8 +153,6 @@ import * as Yup from 'yup';
 //   );
 // };
 
-
-
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const onSubmit = values => {
@@ -178,9 +170,9 @@ const initialValues = {
   employed: false,
   favoriteColor: '',
   toppings: ['tuna'],
-  notes: '',
   employedd: false,
   select: '',
+  ageGroup: '',
   foo: 23,
   bar: '',
 };
@@ -195,10 +187,10 @@ const validationSchema = Yup.object({
   age: Yup.number().min(18),
   employed: Yup.boolean().equals([true]),
   favoriteColor: Yup.string(),
-  toppings: Yup.array().min(2),
-  notes: Yup.string(),
+  toppings: Yup.array().min(1),
   employedd: Yup.boolean().equals([true]),
   select: Yup.string(),
+  ageGroup: Yup.string(),
   foo: Yup.number(),
   bar: Yup.string(),
 });
@@ -206,11 +198,24 @@ const validationSchema = Yup.object({
 const Form = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   function ColorChoose() {
-    if (colorMode === "light") {
-      return "g_start";
+    if (colorMode === 'light') {
+      return 'g_start';
     } else {
-      return "g_end";
+      return 'g_end';
     }
+  }
+
+  const riskColor = e => {
+    if (e <= 33){
+      return 'green.300'
+    }
+    else if ( 33 < e && e < 66){
+      return 'yellow.300'
+    }
+    else{
+      return 'red.400'
+    }
+
   }
   return (
     <Formik
@@ -219,7 +224,6 @@ const Form = () => {
       validationSchema={validationSchema}
     >
       {({ handleSubmit, values, errors }) => (
-        //       <BorderBox m={15}>
         <Box
           borderWidth="1px"
           rounded="lg"
@@ -227,39 +231,66 @@ const Form = () => {
           borderColor={ColorChoose}
           maxWidth={800}
           p={6}
+          // m={6 auto}
           m="10px auto"
           as="form"
           onSubmit={handleSubmit}
         >
-        <Heading>Filters</Heading>
-        <Divider />
+          <Heading align="center">Filters</Heading>
+          <Divider />
           <Text mt={4}> Real Estate Prices</Text>
-          <Stack
-            px={5}
-            direction={['column', 'row', 'row']}
-            align="center"
-            >
+          <Stack px={5} direction={['column', 'row', 'row']} align="center">
             <NumberInputControl name="lowerValue" label="Lower Limit ($)" />
             <Text> to </Text>
             <NumberInputControl name="upperValue" label="Upper Limit ($)" />
           </Stack>
-          <Text>Medium life Expectancy</Text>
-          <SliderControl name="foo" />
+
+          <Box my={5}>
+            <HStack my={2}>
+              <Text>How much risk are you willing to take?*</Text>
+              <Tag bg={riskColor(values.foo)}><Text fontWeight="bold">{values.foo} %</Text> </Tag>
+            </HStack>
+            <HStack mx={5}>
+              <Text color="green">0%</Text>
+              <SliderControl name="foo" />
+              <Text color="red">100%</Text>
+            </HStack>
+          </Box>
+
+          <Box my={5}>
+          <Text>What is the income level you want to be in?</Text>
           <SelectControl
             name="select"
+            px={5}
             selectProps={{ placeholder: 'Select option' }}
           >
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+            <option value="option1">less than $30,000</option>
+            <option value="option2">$30,000 - $60,000</option>
+            <option value="option3">$60,000 - $90,000</option>
+            <option value="option4">$90,000 - $120,000</option>
+            <option value="option5">more than $120,000 </option>
           </SelectControl>
-          {/* <InputControl name="firstName" label="First Name" />
-          <InputControl name="lastName" label="Last Name" /> */}
-          <NumberInputControl name="age" label="Last Name" />
-          <CheckboxSingleControl name="employed">
-            Employed
-          </CheckboxSingleControl>
-          <RadioGroupControl name="favoriteColor" label="Favorite Color">
+          </Box>
+
+          <Box my={5}>
+          <Text>What age group do you want to live in?</Text>
+          <SelectControl
+            name="ageGroup"
+            px={5}
+            selectProps={{ placeholder: 'Select option' }}
+          >
+            <option value="option1">20 - 30 years</option>
+            <option value="option2">30 - 50 years</option>
+            <option value="option5">more than 50 years</option>
+          </SelectControl>
+          </Box>
+
+          <Box my={5}>
+           <SwitchControl name="employedd" label="Consider Life Expectancy?" />
+           <CheckboxSingleControl name="employed" label="Consider Life Expectancy?" />
+          </Box>
+          
+          <RadioGroupControl name="favoriteColor" label="Vaccinations">
             <Radio value="#ff0000">Red</Radio>
             <Radio value="#00ff00">Green</Radio>
             <Radio value="#0000ff">Blue</Radio>
@@ -284,12 +315,8 @@ const Form = () => {
               Pineapple
             </CheckboxControl>
           </CheckboxContainer>
-          <TextareaControl name="notes" label="Notes" />
-          <SwitchControl name="employedd" label="Employed" />
 
-          {/* <SliderControl name="foo" sliderProps={{ max: 40 }} /> */}
-
-          <PercentComplete />
+          <PercentComplete/>
           <ButtonGroup>
             <SubmitButton bg="g_start">Submit</SubmitButton>
             <ResetButton>Reset</ResetButton>
