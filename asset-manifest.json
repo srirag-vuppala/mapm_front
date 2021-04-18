@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/mapm_front/static/css/main.3e9507f0.chunk.css",
+    "main.js": "/mapm_front/static/js/main.e7f25e29.chunk.js",
+    "main.js.map": "/mapm_front/static/js/main.e7f25e29.chunk.js.map",
+    "runtime-main.js": "/mapm_front/static/js/runtime-main.acf2052c.js",
+    "runtime-main.js.map": "/mapm_front/static/js/runtime-main.acf2052c.js.map",
+    "static/css/2.d8b154bf.chunk.css": "/mapm_front/static/css/2.d8b154bf.chunk.css",
+    "static/js/2.1af67ad9.chunk.js": "/mapm_front/static/js/2.1af67ad9.chunk.js",
+    "static/js/2.1af67ad9.chunk.js.map": "/mapm_front/static/js/2.1af67ad9.chunk.js.map",
+    "static/js/3.b0cbd65f.chunk.js": "/mapm_front/static/js/3.b0cbd65f.chunk.js",
+    "static/js/3.b0cbd65f.chunk.js.map": "/mapm_front/static/js/3.b0cbd65f.chunk.js.map",
+    "index.html": "/mapm_front/index.html",
+    "static/css/2.d8b154bf.chunk.css.map": "/mapm_front/static/css/2.d8b154bf.chunk.css.map",
+    "static/css/main.3e9507f0.chunk.css.map": "/mapm_front/static/css/main.3e9507f0.chunk.css.map",
+    "static/js/2.1af67ad9.chunk.js.LICENSE.txt": "/mapm_front/static/js/2.1af67ad9.chunk.js.LICENSE.txt",
+    "static/media/logo.034ef726.svg": "/mapm_front/static/media/logo.034ef726.svg",
+    "static/media/700.css": "/mapm_front/static/media/open-sans-vietnamese-700-normal.122371a2.woff2",
+    "static/media/400.css": "/mapm_front/static/media/raleway-vietnamese-400-normal.41f91bf2.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.acf2052c.js",
+    "static/css/2.d8b154bf.chunk.css",
+    "static/js/2.1af67ad9.chunk.js",
+    "static/css/main.3e9507f0.chunk.css",
+    "static/js/main.e7f25e29.chunk.js"
+  ]
+}
