@@ -18,6 +18,7 @@ const Home = () => {
 
   return (
     <>
+      <Box>
       <Banner />
       <Center>
         <Button bg="g_start" align="center" color="white" onClick={onOpen}>
@@ -40,6 +41,7 @@ const Home = () => {
         </Modal>
       </Center>
       <MyMap />
+      </Box>
     </>
   );
 };

@@ -1,36 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MapContainer,
   TileLayer,
   Marker,
+  GeoJSON,
   Popup,
   LayersControl,
 } from 'react-leaflet';
-import { Box, useColorMode } from '@chakra-ui/react';
+import { Spinner, Box, useColorMode } from '@chakra-ui/react';
 import BorderBox from 'components/SharedComponents/BorderBox';
 import 'components/myLeaflet.css';
 import useGeoLocation from 'components/Hooks/useGeoLocation';
+// import counties from '../data/us-county-boundaries.json'
+import counties from '../data/counties.json';
+// import L from 'leaflet';
 
 function MyMap() {
   const userLocation = useGeoLocation();
-  const position = [Number(userLocation.coordinates['lat']), Number(userLocation.coordinates['lng'])];
-  // function getUserLocation() {
-  //   // if (userLocation !== undefined || JSON.stringify(userLocation) !== '{}') {
-  //   let position = [0, 0];
-  //   // if (userLocation.loaded === true && userLocation.coordinates !== null) {
-  //   if (JSON.stringify(userLocation) !== '{}') {
-  //       position = [Number(userLocation.coordinates['lat']), Number(userLocation.coordinates['lng'])];
-  //       // position[1] = Number(userLocation.coordinates['lng']);
-  //   }
-  //   else {
-  //     position = [51.505, -0.09];
-  //   }
-  //   return position;
-  // }
+  const position = [
+    Number(userLocation.coordinates['lat']),
+    Number(userLocation.coordinates['lng']),
+  ];
 
   const { colorMode, toggleColorMode } = useColorMode();
+  const onEachCounty = (county, layer) => {
+    // layer.options.fillColor = county.properties.color;
+    const name = county.properties.NAME;
+    const confirmedText = county.properties.LSAD;
+    layer.bindPopup(`${name} ${confirmedText}`);
+  };
   return (
     <Box>
+      {/* {counties.length === 0 ? ( <Spinner/> ) */}
+      {/* : (  */}
       <BorderBox>
         <MapContainer
           center={[33.9, -118.39]}
@@ -38,6 +40,7 @@ function MyMap() {
           scrollWheelZoom={true}
           height={300}
         >
+          <GeoJSON attribution="county data" data={counties} onEachFeature={onEachCounty} />
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
               <TileLayer
@@ -77,8 +80,23 @@ function MyMap() {
           </LayersControl>
         </MapContainer>
       </BorderBox>
+      {/* )} */}
     </Box>
   );
 }
 
 export default MyMap;
+
+// function getUserLocation() {
+//   // if (userLocation !== undefined || JSON.stringify(userLocation) !== '{}') {
+//   let position = [0, 0];
+//   // if (userLocation.loaded === true && userLocation.coordinates !== null) {
+//   if (JSON.stringify(userLocation) !== '{}') {
+//       position = [Number(userLocation.coordinates['lat']), Number(userLocation.coordinates['lng'])];
+//       // position[1] = Number(userLocation.coordinates['lng']);
+//   }
+//   else {
+//     position = [51.505, -0.09];
+//   }
+//   return position;
+// }
