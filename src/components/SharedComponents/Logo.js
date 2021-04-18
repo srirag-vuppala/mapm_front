@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Icon, keyframes, usePrefersReducedMotion } from '@chakra-ui/react';
+import { Icon, keyframes, usePrefersReducedMotion } from '@chakra-ui/react';
 import logo from 'Images/logo.svg';
 import { FcGlobe } from 'react-icons/fc';
 

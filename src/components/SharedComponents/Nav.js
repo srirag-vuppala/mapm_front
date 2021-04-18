@@ -1,13 +1,8 @@
 import React from 'react';
 import {
   Box,
-  List,
   Text,
-  Icon,
-  Spacer,
   HStack,
-  ListItem,
-  UnorderedList,
   Flex,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';

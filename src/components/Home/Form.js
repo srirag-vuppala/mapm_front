@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Tag,
   Box,
-  Divider,
-  Heading,
   Text,
   Stack,
   HStack,
-  Button,
-  Input,
   Radio,
   ButtonGroup,
+  Center,
   useColorMode,
 } from '@chakra-ui/react';
 import {
   CheckboxContainer,
   CheckboxControl,
-  CheckboxSingleControl,
-  InputControl,
+  // CheckboxSingleControl,
+  // InputControl,
   NumberInputControl,
   PercentComplete,
   RadioGroupControl,
@@ -26,7 +23,7 @@ import {
   SliderControl,
   SubmitButton,
   SwitchControl,
-  TextareaControl,
+  // TextareaControl,
 } from 'formik-chakra-ui';
 // import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 // import BorderBox from 'components/SharedComponents/BorderBox';
@@ -156,6 +153,7 @@ import * as Yup from 'yup';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const onSubmit = values => {
+
   sleep(300).then(() => {
     window.alert(JSON.stringify(values, null, 2));
   });
@@ -164,6 +162,7 @@ const onSubmit = values => {
 const initialValues = {
   lowerValue: 0,
   upperValue: 1,
+  lifeExpectancy: false,
   firstName: '',
   lastName: '',
   age: 0,
@@ -182,6 +181,7 @@ const validationSchema = Yup.object({
     Yup.ref('lowerValue'),
     'Upper Limit must be bigger than Lower Limit'
   ),
+  lifeExpectancy: Yup.boolean(),
   firstName: Yup.string(),
   lastName: Yup.string(),
   age: Yup.number().min(18),
@@ -195,7 +195,7 @@ const validationSchema = Yup.object({
   bar: Yup.string(),
 });
 
-const Form = () => {
+const Form = ({onClose}) => {
   const { colorMode, toggleColorMode } = useColorMode();
   function ColorChoose() {
     if (colorMode === 'light') {
@@ -206,38 +206,34 @@ const Form = () => {
   }
 
   const riskColor = e => {
-    if (e <= 33){
-      return 'green.300'
+    if (e <= 33) {
+      return 'green.300';
+    } else if (33 < e && e < 66) {
+      return 'yellow.300';
+    } else {
+      return 'red.400';
     }
-    else if ( 33 < e && e < 66){
-      return 'yellow.300'
-    }
-    else{
-      return 'red.400'
-    }
-
-  }
+  };
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={onSubmit}
+      // onSubmit={(e) => onClose}
       validationSchema={validationSchema}
     >
       {({ handleSubmit, values, errors }) => (
         <Box
           borderWidth="1px"
           rounded="lg"
-          boxShadow="dark-lg"
+          // boxShadow="dark-lg"
           borderColor={ColorChoose}
-          maxWidth={800}
-          p={6}
-          // m={6 auto}
-          m="10px auto"
+          p={5}
+          // mx={6}
           as="form"
           onSubmit={handleSubmit}
         >
-          <Heading align="center">Filters</Heading>
-          <Divider />
+          {/* <Heading align="center">Filters</Heading> */}
+          {/* <Divider /> */}
           <Text mt={4}> Real Estate Prices</Text>
           <Stack px={5} direction={['column', 'row', 'row']} align="center">
             <NumberInputControl name="lowerValue" label="Lower Limit ($)" />
@@ -248,7 +244,9 @@ const Form = () => {
           <Box my={5}>
             <HStack my={2}>
               <Text>How much risk are you willing to take?*</Text>
-              <Tag bg={riskColor(values.foo)}><Text fontWeight="bold">{values.foo} %</Text> </Tag>
+              <Tag bg={riskColor(values.foo)}>
+                <Text fontWeight="bold">{values.foo} %</Text>{' '}
+              </Tag>
             </HStack>
             <HStack mx={5}>
               <Text color="green">0%</Text>
@@ -258,38 +256,44 @@ const Form = () => {
           </Box>
 
           <Box my={5}>
-          <Text>What is the income level you want to be in?</Text>
-          <SelectControl
-            name="select"
-            px={5}
-            selectProps={{ placeholder: 'Select option' }}
-          >
-            <option value="option1">less than $30,000</option>
-            <option value="option2">$30,000 - $60,000</option>
-            <option value="option3">$60,000 - $90,000</option>
-            <option value="option4">$90,000 - $120,000</option>
-            <option value="option5">more than $120,000 </option>
-          </SelectControl>
+            <Text>What is the income level you want to be in?</Text>
+            <SelectControl
+              name="select"
+              px={5}
+              selectProps={{ placeholder: 'Select option' }}
+            >
+              <option value="option1">less than $30,000</option>
+              <option value="option2">$30,000 - $60,000</option>
+              <option value="option3">$60,000 - $90,000</option>
+              <option value="option4">$90,000 - $120,000</option>
+              <option value="option5">more than $120,000 </option>
+            </SelectControl>
           </Box>
 
           <Box my={5}>
-          <Text>What age group do you want to live in?</Text>
-          <SelectControl
-            name="ageGroup"
-            px={5}
-            selectProps={{ placeholder: 'Select option' }}
-          >
-            <option value="option1">20 - 30 years</option>
-            <option value="option2">30 - 50 years</option>
-            <option value="option5">more than 50 years</option>
-          </SelectControl>
+            <Text>What age group do you want to live in?</Text>
+            <SelectControl
+              name="ageGroup"
+              px={5}
+              selectProps={{ placeholder: 'Select option' }}
+            >
+              <option value="option1">20 - 30 years</option>
+              <option value="option2">30 - 50 years</option>
+              <option value="option3">more than 50 years</option>
+            </SelectControl>
           </Box>
 
           <Box my={5}>
-           <SwitchControl name="employedd" label="Consider Life Expectancy?" />
-           <CheckboxSingleControl name="employed" label="Consider Life Expectancy?" />
+            <SwitchControl
+              name="lifeExpectancy"
+              label="Consider Life Expectancy?"
+            />
+            {/* <CheckboxSingleControl
+              name="lifeExpectancy"
+              label="Consider Life Expectancy?"
+            /> */}
           </Box>
-          
+
           <RadioGroupControl name="favoriteColor" label="Vaccinations">
             <Radio value="#ff0000">Red</Radio>
             <Radio value="#00ff00">Green</Radio>
@@ -316,11 +320,14 @@ const Form = () => {
             </CheckboxControl>
           </CheckboxContainer>
 
-          <PercentComplete/>
+          <PercentComplete />
+          <Center>
+
           <ButtonGroup>
-            <SubmitButton bg="g_start">Submit</SubmitButton>
+            <SubmitButton bg="g_start" onClick={onClose}>Submit</SubmitButton>
             <ResetButton>Reset</ResetButton>
           </ButtonGroup>
+          </Center>
 
           <Box as="pre" marginY={10}>
             {JSON.stringify(values, null, 2)}

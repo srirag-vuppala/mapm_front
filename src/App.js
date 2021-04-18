@@ -2,15 +2,11 @@ import React from 'react';
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
 } from '@chakra-ui/react';
 import Nav  from 'components/SharedComponents/Nav.js';
+import Footer from 'components/SharedComponents/Footer.js';
 import Home from 'components/Home/Home';
-import { BrowserRouter as Router, Switch, Route, Link as RouterLink } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, } from 'react-router-dom'
 
 import theme from './theme.js'
 import "@fontsource/raleway/400.css"
@@ -30,6 +26,7 @@ function App() {
           {/* <Route exact path="/about" component={About} /> */}
           <Route exact path="/" component={Home} />
         </Switch>
+        <Footer />
         </Box>
       </Router>
     </ChakraProvider>

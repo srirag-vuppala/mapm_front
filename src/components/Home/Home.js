@@ -1,18 +1,45 @@
-import React from 'react';
-import { Box } from '@chakra-ui/react';
-import Form from 'components/Home/Form'
-import Banner from 'components/Home/Banner'
-import MyMap from 'components/MyMap'
+import React, { useState } from 'react';
+import { Heading, Box, Button, Center, useDisclosure } from '@chakra-ui/react';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react"
+import Form from 'components/Home/Form';
+import Banner from 'components/Home/Banner';
+import MyMap from 'components/MyMap';
 
 const Home = () => {
+  const {isOpen, onOpen, onClose} = useDisclosure()
+
   return (
     <>
       <Banner />
-      <Form/>
-      <Box>ijlkj</Box>
+      <Center>
+        <Button bg="g_start" align="center" color="white" onClick={onOpen}>
+          Let's  start the magic
+        </Button>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent maxW="50rem">
+            <ModalHeader>
+              <Heading align="center">Filters</Heading>
+              </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+            <Form onClose={onClose} />
+            </ModalBody>
+          </ModalContent>
+          <ModalFooter>
+            hi
+          </ModalFooter>
+        </Modal>
+      </Center>
       <MyMap />
-      <Box>l;sdjfl;ijlkj</Box>
-      
     </>
   );
 };
