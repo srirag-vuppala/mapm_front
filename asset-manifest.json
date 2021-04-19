@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/mapm_front/static/css/main.3e9507f0.chunk.css",
-    "main.js": "/mapm_front/static/js/main.9f11e46e.chunk.js",
-    "main.js.map": "/mapm_front/static/js/main.9f11e46e.chunk.js.map",
-    "runtime-main.js": "/mapm_front/static/js/runtime-main.7c314950.js",
-    "runtime-main.js.map": "/mapm_front/static/js/runtime-main.7c314950.js.map",
+    "main.css": "/mapm_front/static/css/main.2b07a0d7.chunk.css",
+    "main.js": "/mapm_front/static/js/main.f44efb0b.chunk.js",
+    "main.js.map": "/mapm_front/static/js/main.f44efb0b.chunk.js.map",
+    "runtime-main.js": "/mapm_front/static/js/runtime-main.865a326a.js",
+    "runtime-main.js.map": "/mapm_front/static/js/runtime-main.865a326a.js.map",
     "static/css/2.d8b154bf.chunk.css": "/mapm_front/static/css/2.d8b154bf.chunk.css",
-    "static/js/2.bd5a53f8.chunk.js": "/mapm_front/static/js/2.bd5a53f8.chunk.js",
-    "static/js/2.bd5a53f8.chunk.js.map": "/mapm_front/static/js/2.bd5a53f8.chunk.js.map",
-    "static/js/3.40a8f063.chunk.js": "/mapm_front/static/js/3.40a8f063.chunk.js",
-    "static/js/3.40a8f063.chunk.js.map": "/mapm_front/static/js/3.40a8f063.chunk.js.map",
+    "static/js/2.3a73764a.chunk.js": "/mapm_front/static/js/2.3a73764a.chunk.js",
+    "static/js/2.3a73764a.chunk.js.map": "/mapm_front/static/js/2.3a73764a.chunk.js.map",
+    "static/js/3.11185277.chunk.js": "/mapm_front/static/js/3.11185277.chunk.js",
+    "static/js/3.11185277.chunk.js.map": "/mapm_front/static/js/3.11185277.chunk.js.map",
     "index.html": "/mapm_front/index.html",
     "static/css/2.d8b154bf.chunk.css.map": "/mapm_front/static/css/2.d8b154bf.chunk.css.map",
-    "static/css/main.3e9507f0.chunk.css.map": "/mapm_front/static/css/main.3e9507f0.chunk.css.map",
-    "static/js/2.bd5a53f8.chunk.js.LICENSE.txt": "/mapm_front/static/js/2.bd5a53f8.chunk.js.LICENSE.txt",
-    "static/media/logo.034ef726.svg": "/mapm_front/static/media/logo.034ef726.svg",
+    "static/css/main.2b07a0d7.chunk.css.map": "/mapm_front/static/css/main.2b07a0d7.chunk.css.map",
+    "static/js/2.3a73764a.chunk.js.LICENSE.txt": "/mapm_front/static/js/2.3a73764a.chunk.js.LICENSE.txt",
+    "static/media/logo.b7d27852.svg": "/mapm_front/static/media/logo.b7d27852.svg",
     "static/media/700.css": "/mapm_front/static/media/open-sans-vietnamese-700-normal.122371a2.woff2",
     "static/media/400.css": "/mapm_front/static/media/raleway-vietnamese-400-normal.41f91bf2.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.7c314950.js",
+    "static/js/runtime-main.865a326a.js",
     "static/css/2.d8b154bf.chunk.css",
-    "static/js/2.bd5a53f8.chunk.js",
-    "static/css/main.3e9507f0.chunk.css",
-    "static/js/main.9f11e46e.chunk.js"
+    "static/js/2.3a73764a.chunk.js",
+    "static/css/main.2b07a0d7.chunk.css",
+    "static/js/main.f44efb0b.chunk.js"
   ]
 }
