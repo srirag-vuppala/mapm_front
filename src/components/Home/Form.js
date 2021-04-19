@@ -124,12 +124,12 @@ const Form = ({ onClose, onSubmit }) => {
               <ResetButton>Reset</ResetButton>
             </ButtonGroup>
           </Center>
-
+{/* 
           <Box as="pre" marginY={10}>
             {JSON.stringify(values, null, 2)}
             <br />
             {JSON.stringify(errors, null, 2)}
-          </Box>
+          </Box> */}
         </Box>
       )}
     </Formik>

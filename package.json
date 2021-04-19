@@ -1,6 +1,6 @@
 {
   "homepage": "https://srirag-vuppala.github.io/mapm_front/",
-  "name": "mapm_frontend",
+  "name": "mapm_front",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

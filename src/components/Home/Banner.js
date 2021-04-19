@@ -7,9 +7,9 @@ const Banner = () => {
         <>
         <Box p={5} align="center">
             <BorderBox>
-                <Heading >Hello! Welcome to mapM</Heading>
+                <Heading p={2} >Hello! Welcome to mapM</Heading>
                 <Divider />
-                <Text>Your one stop shop to find the best location to live in with your requirements</Text>
+                <Text p={2}>Your one stop shop to find the best location to live in with your requirements</Text>
             </BorderBox>
         </Box>
         </>
