@@ -9,10 +9,11 @@ import {
 } from 'react-leaflet';
 import { Spinner, Box, useColorMode } from '@chakra-ui/react';
 import BorderBox from 'components/SharedComponents/BorderBox';
-import 'components/myLeaflet.css';
+import 'components/Map/myLeaflet.css';
 import useGeoLocation from 'components/Hooks/useGeoLocation';
 // import counties from '../data/us-county-boundaries.json'
-import counties from '../data/counties.json';
+import counties from '../../data/counties.json';
+import states from '../../data/states.json';
 // import L from 'leaflet';
 
 function MyMap() {
@@ -29,18 +30,26 @@ function MyMap() {
     const confirmedText = county.properties.LSAD;
     layer.bindPopup(`${name} ${confirmedText}`);
   };
+
+  const onEachStates = (state, layer) => {
+    // layer.options.fillColor = county.properties.color;
+    const name = state.properties.NAME;
+    const confirmedText = state.properties.LSAD;
+    layer.bindPopup(`${name} ${confirmedText}`);
+  };
   return (
     <Box>
       {/* {counties.length === 0 ? ( <Spinner/> ) */}
       {/* : (  */}
       <BorderBox>
         <MapContainer
-          center={[33.9, -118.39]}
+          center={[35.3, -120.65]}
           zoom={13}
           scrollWheelZoom={true}
           height={300}
         >
           <GeoJSON attribution="county data" data={counties} onEachFeature={onEachCounty} />
+          <GeoJSON attribution="states data" data={states} onEachFeature={onEachCounty} />
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
               <TileLayer
@@ -74,8 +83,8 @@ function MyMap() {
             )} */}
 
             {/* <Marker position={getUserLocation}> */}
-            <Marker position={position}>
-              <Popup>Where you are right now!</Popup>
+            <Marker className="main_marker" position={position}>
+              <Popup className="main_marker">Where you are right now!</Popup>
             </Marker>
           </LayersControl>
         </MapContainer>

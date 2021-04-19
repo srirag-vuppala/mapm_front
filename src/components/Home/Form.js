@@ -30,29 +30,6 @@ import {
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-// Yup validations
-// const validateRange = Yup.object().shape({
-//   lowervalue: Yup.number(),
-//   // upperValue: Yup.number().when('lowerValue', (lowerValue, schema) => {
-//   //     return schema.test({
-//   //       test: upperValue=> !!lowerValue&& upperValue> lowerValue,
-//   //       message: "Max should be > min"
-//   //     })
-//   //   }),
-//   upperValue: Yup.number().moreThan(Yup.ref('lowerValue'), "Max should be more than min")
-//   // upperValue: Yup.number().when(
-//   //       ["lowerValue", "upperValue"],
-//   //       (lowerValue: number, upperValue: number, schema: any) => {
-//   //           return !!lowerValue&& lowerValue!==upperValue
-//   //               ? schema.moreThan(
-//   //                       lowerValue,
-//   //                       "Max should be > min"
-//   //                 )
-//   //               : schema;
-//   //       }
-//   // ),
-// })
-
 // const Form = () => {
 
 //   const validateIcon = e => {

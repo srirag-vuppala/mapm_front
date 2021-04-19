@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react"
 import Form from 'components/Home/Form';
 import Banner from 'components/Home/Banner';
-import MyMap from 'components/MyMap';
+import MyMap from 'components/Map/MyMap';
 
 const Home = () => {
   const {isOpen, onOpen, onClose} = useDisclosure()
