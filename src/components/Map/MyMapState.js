@@ -12,11 +12,10 @@ import BorderBox from 'components/SharedComponents/BorderBox';
 import 'components/Map/myLeaflet.css';
 import useGeoLocation from 'components/Hooks/useGeoLocation';
 // import counties from '../data/us-county-boundaries.json'
-import counties from '../../data/counties.json';
 import states from '../../data/states.json';
 // import L from 'leaflet';
 
-function MyMap() {
+function MyMapState(props) {
   const userLocation = useGeoLocation();
   const position = [
     Number(userLocation.coordinates['lat']),
@@ -24,19 +23,14 @@ function MyMap() {
   ];
 
   const { colorMode, toggleColorMode } = useColorMode();
-  const onEachCounty = (county, layer) => {
-    // layer.options.fillColor = county.properties.color;
-    const name = county.properties.NAME;
-    const confirmedText = county.properties.LSAD;
-    layer.bindPopup(`${name} ${confirmedText}`);
-  };
 
-  const onEachStates = (state, layer) => {
+  const onEachState = (state, layer) => {
     // layer.options.fillColor = county.properties.color;
     const name = state.properties.NAME;
     const confirmedText = state.properties.LSAD;
     layer.bindPopup(`${name} ${confirmedText}`);
   };
+
   return (
     <Box>
       {/* {counties.length === 0 ? ( <Spinner/> ) */}
@@ -48,8 +42,7 @@ function MyMap() {
           scrollWheelZoom={true}
           height={300}
         >
-          <GeoJSON attribution="county data" data={counties} onEachFeature={onEachCounty} />
-          <GeoJSON attribution="states data" data={states} onEachFeature={onEachCounty} />
+          <GeoJSON attribution="states data" data={states} onEachFeature={onEachState} addTo="OpenStreetMap.Mapnik" />
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
               <TileLayer
@@ -70,42 +63,18 @@ function MyMap() {
               />
             </LayersControl.BaseLayer>
 
-            {/* {colorMode === 'light' ? (
-              <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-            ) : (
-              <TileLayer
-                attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> contributors'
-                url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
-              />
-            )} */}
 
-            {/* <Marker position={getUserLocation}> */}
-            <Marker className="main_marker" position={position}>
-              <Popup className="main_marker">Where you are right now!</Popup>
+            <Marker position={position}>
+              <Popup>Where you are right now!</Popup>
             </Marker>
+            {/* {data.map(=> (
+              <Marker key={state.id} postion={[state.]}></Marker>
+            ))} */}
           </LayersControl>
         </MapContainer>
       </BorderBox>
-      {/* )} */}
     </Box>
   );
 }
 
-export default MyMap;
-
-// function getUserLocation() {
-//   // if (userLocation !== undefined || JSON.stringify(userLocation) !== '{}') {
-//   let position = [0, 0];
-//   // if (userLocation.loaded === true && userLocation.coordinates !== null) {
-//   if (JSON.stringify(userLocation) !== '{}') {
-//       position = [Number(userLocation.coordinates['lat']), Number(userLocation.coordinates['lng'])];
-//       // position[1] = Number(userLocation.coordinates['lng']);
-//   }
-//   else {
-//     position = [51.505, -0.09];
-//   }
-//   return position;
-// }
+export default MyMapState;
