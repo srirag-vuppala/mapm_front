@@ -32,10 +32,10 @@ import * as Yup from 'yup';
 
 
 const initialValues = {
-  lowerValue: 0,
-  upperValue: 1,
-  stateCounty: null, //state = false county = true
-  risk: 50,
+  lowerValue: '',
+  upperValue: '',
+  stateCounty: false, //state = false county = true
+  risk: '',
   bar: '',
 };
 
@@ -44,9 +44,9 @@ const validationSchema = Yup.object({
   upperValue: Yup.number().moreThan(
     Yup.ref('lowerValue'),
     'Upper Limit must be bigger than Lower Limit'
-  ),
+  ).required(),
   stateCounty: Yup.boolean(),
-  risk: Yup.number(),
+  risk: Yup.number().required(),
   bar: Yup.string(),
 });
 
@@ -117,7 +117,8 @@ const Form = ({ onClose, onSubmit }) => {
           <PercentComplete />
           <Center>
             <ButtonGroup>
-              <SubmitButton bg="g_start" onClick={onClose}>
+              {/* <SubmitButton bg="g_start" onClick={onClose}> */}
+              <SubmitButton bg="g_start">
                 Submit
               </SubmitButton>
               <ResetButton>Reset</ResetButton>

@@ -20,7 +20,6 @@ const Home = () => {
   const [formData, setFormData] = useState({});
 
   useEffect ( () => {
-    console.log(formData);
     setFormData(formData);
   }, [formData])
 
@@ -40,11 +39,11 @@ const Home = () => {
   }
 
   const onSubmit_Form = values => {
-    // sleep(0).then(() => {
+    sleep(100).then(() => {
       // window.alert(JSON.stringify(values, null, 2));
       // setFormData(JSON.stringify(values, null, 2));
       setFormData(values);
-    // });
+    });
   };
 
   return (
@@ -69,7 +68,7 @@ const Home = () => {
             <ModalFooter>hi</ModalFooter>
           </Modal>
         </Center>
-        {formData['stateCounty'] === true && formData['bar'] !== ''? (
+        {(formData['stateCounty'] === true)? (
           <MyMapCounty />
         ):(
           <MyMapState />
