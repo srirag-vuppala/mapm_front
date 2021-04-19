@@ -13,7 +13,63 @@ import 'components/Map/myLeaflet.css';
 import useGeoLocation from 'components/Hooks/useGeoLocation';
 // import counties from '../data/us-county-boundaries.json'
 import states from '../../data/states.json';
-// import L from 'leaflet';
+import states_loc from '../../data/state_loc.json';
+import { popupContent, popupHead, popupText, okText } from './popupStyles';
+
+import L from 'leaflet';
+
+const stateDict = {
+  AL: 'Alabama',
+  AK: 'Alaska',
+  AZ: 'Arizona',
+  AR: 'Arkansas',
+  CA: 'California',
+  CO: 'Colorado',
+  CT: 'Connecticut',
+  DE: 'Delaware',
+  FL: 'Florida',
+  GA: 'Georgia',
+  HI: 'Hawaii',
+  ID: 'Idaho',
+  IL: 'Illinois',
+  IN: 'Indiana',
+  IA: 'Iowa',
+  KS: 'Kansas',
+  KY: 'Kentucky',
+  LA: 'Louisiana',
+  ME: 'Maine',
+  MD: 'Maryland',
+  MA: 'Massachusetts',
+  MI: 'Michigan',
+  MN: 'Minnesota',
+  MS: 'Mississippi',
+  MO: 'Missouri',
+  MT: 'Montana',
+  NE: 'Nebraska',
+  NV: 'Nevada',
+  NH: 'New Hampshire',
+  NJ: 'New Jersey',
+  NM: 'New Mexico',
+  NY: 'New York',
+  NC: 'North Carolina',
+  ND: 'North Dakota',
+  OH: 'Ohio',
+  OK: 'Oklahoma',
+  OR: 'Oregon',
+  PA: 'Pennsylvania',
+  RI: 'Rhode Island',
+  SC: 'South Carolina',
+  SD: 'South Dakota',
+  TN: 'Tennessee',
+  TX: 'Texas',
+  UT: 'Utah',
+  VT: 'Vermont',
+  VA: 'Virginia',
+  WA: 'Washington',
+  WV: 'West Virginia',
+  WI: 'Wisconsin',
+  WY: 'Wyoming',
+};
 
 function MyMapState(props) {
   const userLocation = useGeoLocation();
@@ -22,19 +78,21 @@ function MyMapState(props) {
     Number(userLocation.coordinates['lng']),
   ];
 
-  const { colorMode, toggleColorMode } = useColorMode();
-
   const onEachState = (state, layer) => {
-    // layer.options.fillColor = county.properties.color;
     const name = state.properties.NAME;
     const confirmedText = state.properties.LSAD;
     layer.bindPopup(`${name} ${confirmedText}`);
+    // for (let i = 0; i < props.points.length; i++) {
+    //   if (stateDict[props.points[i]['state']] === state.properties.NAME) {
+    //     console.log('hi');
+    //     layer.setStyle({ color: 'red' });
+    //   }
+    // }
+    // layer.bindPopup(`${name} ${confirmedText}`, {{ fillcolor: colorMatch(state) }});
   };
 
   return (
     <Box>
-      {/* {counties.length === 0 ? ( <Spinner/> ) */}
-      {/* : (  */}
       <BorderBox>
         <MapContainer
           center={[35.3, -120.65]}
@@ -42,7 +100,12 @@ function MyMapState(props) {
           scrollWheelZoom={true}
           height={300}
         >
-          <GeoJSON attribution="states data" data={states} onEachFeature={onEachState} addTo="OpenStreetMap.Mapnik" />
+          <GeoJSON
+            attribution="states data"
+            data={states}
+            onEachFeature={onEachState}
+            addTo="OpenStreetMap.Mapnik"
+          />
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
               <TileLayer
@@ -63,13 +126,39 @@ function MyMapState(props) {
               />
             </LayersControl.BaseLayer>
 
-
             <Marker position={position}>
               <Popup>Where you are right now!</Popup>
             </Marker>
-            {/* {data.map(=> (
-              <Marker key={state.id} postion={[state.]}></Marker>
-            ))} */}
+
+            {props.points.map(point => {
+              return (
+                <Marker
+                  key={Math.random()}
+                  position={states_loc[point['state']]}
+                >
+                  <Popup className="request-popup">
+                    <div style={popupContent}>
+                      <div className="m-2" style={popupHead}>
+                        State code : {point['state']}
+                      </div>
+                      <span style={popupText}>
+                        This area would be a great fit for your requirements
+                      </span>
+                      <br />
+                      <span style={popupText}>
+                        <b>Covid Status :</b>
+                      </span>
+                      <div className="m-2" style={okText}>
+                       number of confirmed cases {point['total_vaccinations']} 
+                      </div>
+                      <div className="m-2" style={okText}>
+                        <b>Overall risk assessment </b>: {point['risk'].toPrecision(3)}
+                      </div>
+                    </div>
+                  </Popup>
+                </Marker>
+              );
+            })}
           </LayersControl>
         </MapContainer>
       </BorderBox>

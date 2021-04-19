@@ -32,10 +32,10 @@ import * as Yup from 'yup';
 
 
 const initialValues = {
-  lowerValue: '',
-  upperValue: '',
+  lowerValue: 0,
+  upperValue: 1,
   stateCounty: false, //state = false county = true
-  risk: '',
+  risk: 0,
   bar: '',
 };
 
@@ -109,7 +109,7 @@ const Form = ({ onClose, onSubmit }) => {
           <Box my={5}>
             <HStack>
             <Text>State</Text>
-            <SwitchControl name="stateCounty" label="" />
+            <SwitchControl name="stateCounty"/>
             <Text>County</Text>
             </HStack>
           </Box>

@@ -6,7 +6,7 @@ const Footer = () => {
   const gradient = 'repeating-linear(to-l, g_start, g_end)';
   return (
     <>
-      <Box h="5rem" p={5} bgGradient={gradient}>
+      <Box h="5rem" p={5} bgGradient={gradient} >
           <Center>
           <Flex justify="center" direction="column" >
                 <Text color="white">Made with <Icon color="red" as={FaHeart} /></Text>
